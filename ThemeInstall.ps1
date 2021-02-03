@@ -5,14 +5,11 @@ Write-Output "."
 Write-Output "."
 Write-Output "Installing Modules"
 
-<<<<<<< HEAD
 <#
 Check if required modules are installed
 If not install them
 #>
 
-=======
->>>>>>> 927f6fee2544b93bcdea1a499d0c7c9cddea434c
 if (Get-Module -ListAvailable -Name posh-git) {
 Write-Output "oh-my-posh Already Installed"
 } 
@@ -25,14 +22,13 @@ Write-Output "."
 Write-Output "."
 Write-Output "."
 Write-Output "Copying Files..."
-<<<<<<< HEAD
+
 
 <#
 Copy all the files into the user document folder
 #>
 
-=======
->>>>>>> 927f6fee2544b93bcdea1a499d0c7c9cddea434c
+
 $mydocuments = [environment]::getfolderpath("mydocuments")
 New-Item -Path  $mydocuments\BuksheePSTheme -ItemType Directory -Force  | Out-Null
 Copy-Item -Path ./* -Destination $mydocuments\BuksheePSTheme -r -force
@@ -43,15 +39,14 @@ Copy-Item -Path "$mydocuments\BuksheePSTheme\PoshTheme\Paradox.psm1" -Destinatio
 Write-Output "."
 Write-Output "."
 Write-Output "."
-<<<<<<< HEAD
+
 
 <#
 Check if the required fonts are installed
 If not then install the required fonts
 #>
 
-=======
->>>>>>> 927f6fee2544b93bcdea1a499d0c7c9cddea434c
+ 
 Write-Output "Installing Fonts"
 Write-Output "."
 Write-Output "."
@@ -82,15 +77,13 @@ if ($checkfont2 -eq "true") {
 Write-Output "."
 Write-Output "."
 Write-Output "."
-<<<<<<< HEAD
+ 
 
 <#
 Installing updates for WSL Ubuntu-20.04 and Kali
-
 Note: Improve this to install to all possible wsl variations
 #>
-=======
->>>>>>> 927f6fee2544b93bcdea1a499d0c7c9cddea434c
+
 
 Write-Output "."
 Write-Output "."
@@ -101,12 +94,12 @@ Write-Output "."
 Write-Output "."
 Write-Output "."
 Write-Output "Installing Ubuntu Feature - Enter Sudo Password"
-<<<<<<< HEAD
+ 
 wsl.exe -d Ubuntu-20.04 sh -c "sudo apt update && sudo apt install neofetch -y && touch ~/.hushlogin"
 wsl.exe -d Ubuntu-20.04 sh -c "grep -qxF 'neofetch' ~/.profile || echo 'neofetch' >> ~/.profile"
-=======
+
 wsl.exe -d Ubuntu-20.04 sh -c "sudo apt update && sudo apt install neofetch -y && echo neofetch >> ~/.profile && touch ~/.hushlogin"
->>>>>>> 927f6fee2544b93bcdea1a499d0c7c9cddea434c
+
 Write-Output "."
 Write-Output "."
 Write-Output "."
