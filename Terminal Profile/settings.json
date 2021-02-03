@@ -40,8 +40,8 @@
             "colorScheme": "cyberpunk",
             "fontFace": "Cascadia Code PL",
             "fontSize": 10,
-            "icon": "C:\\ProgramData\\BuksheePSTheme\\images\\favicon.png",
-            "backgroundImage": "C:\\ProgramData\\BuksheePSTheme\\images\\457.jpg",
+            "icon": "%userprofile%\\Documents\\BuksheePSTheme\\images\\favicon.png",
+            "backgroundImage": "%userprofile%\\Documents\\BuksheePSTheme\\images\\457.jpg",
             "backgroundImageOpacity": 0.1,
             "acrylicOpacity": 0.8,
             "useAcrylic": true,
@@ -54,8 +54,8 @@
             "colorScheme": "cyberpunk",
             "fontFace": "Cascadia Code PL",
             "fontSize": 10,
-            "icon": "C:\\ProgramData\\BuksheePSTheme\\images\\favicon.png",
-            "backgroundImage": "C:\\ProgramData\\BuksheePSTheme\\images\\457.jpg",
+            "icon": "%userprofile%\\Documents\\BuksheePSTheme\\images\\favicon.png",
+            "backgroundImage": "%userprofile%\\Documents\\BuksheePSTheme\\images\\457.jpg",
             "backgroundImageOpacity": 0.1,
             "acrylicOpacity": 0.8,
             "useAcrylic": true,
@@ -79,14 +79,14 @@
             "guid": "{46ca431a-3a87-5fb3-83cd-11ececc031d2}",
             "hidden": false,
             "name": "kali-linux",
-            "icon": "C:\\ProgramData\\BuksheePSTheme\\images\\kali.png",
+            "icon": "%userprofile%\\Documents\\BuksheePSTheme\\images\\kali.png",
             "colorScheme": "KaliLegit",
             "source": "Windows.Terminal.Wsl"
           },
           {
             "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
             "hidden": false,
-            "icon": "C:\\ProgramData\\BuksheePSTheme\\images\\ubuntu.png",
+            "icon": "%userprofile%\\Documents\\BuksheePSTheme\\images\\ubuntu.png",
             "name": "Ubuntu-20.04",
             "source": "Windows.Terminal.Wsl"
           }
