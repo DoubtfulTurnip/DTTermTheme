@@ -1,19 +1,25 @@
-# BuksheePSTheme
+# Doubtful Turnip's Windows Terminal Customiser
 
 ## Table of contents
 * [General info](#general-info)
 * [Setup](#setup)
-* [In-Progress](#In-Progress)
+* [Prerequisites](#Prerequisites)
+* [Future](#Future )
 
 ## General info
-My personal PowerShell theme installer.
-In addition to modifying the theme for PowerShell, the script also installs neofetch to WSL2 and adds it to the .profile file
+I have shamelessly stolen ideas from the web to customise my PowerShell and WSL2 experience and then put it all in a script that makes it easier to re-install across multiple systems.
+At this stage the script is still in very early development but hopefully somebody might find it handy.
 
 
 ## Setup
-To run this project, clone the repo and run the ThemeInstall.ps1 file
+To run this project, clone the repo and run the ThemeInstall.ps1 file from within the folder.
 
 
-## In-Progress
-At the moment the installer is configured for WSL2 Ubuntu-20.04 & Kali-Linux installations and will error without these
-The next step is to add all configuration variations of WSL2 based on what is currently installed
+## Prerequisites
+This script presumes you are running Windows 10 with Windows Terminal and WSL2 installed.
+Please check the code before running as this will modify your Windows Terminal Profile.
+This script has been written for my personal Windows 10 environments, it may not function the same for yours if you choose to use it but I would be interested in hearing if there are any issues with it.
+
+
+## Future
+Lots more customisation options
