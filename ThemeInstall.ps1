@@ -163,6 +163,38 @@ $replace = @"
 $Input -replace $find,$replace | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
 }
 
+function Set-CommandPromptRetro{
+#Make Azure menu enabled for Windows Terminal
+
+$Input = Get-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -raw
+
+$find = @"
+ "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}", 
+ "name": "Command Prompt",
+ "commandline": "cmd.exe", 
+ "hidden": false 
+"@
+
+$replace = @"
+"guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+"name": "Command Prompt",
+                "commandline": "cmd.exe",
+                "closeOnExit" : true,
+                "colorScheme" : "Retro",
+                "cursorColor" : "#FFFFFF",
+                "cursorShape": "filledBox",
+                "fontSize" : 16,
+                "padding" : "5, 5, 5, 5",
+                "tabTitle" : "Command Prompt",
+                "fontFace": "PxPlus IBM VGA8",
+                "experimental.retroTerminalEffect": true,
+ "hidden": false,
+ "commandline": "cmd.exe" 
+"@
+
+$Input -replace $find,$replace | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+}
+
 
 function Show-MainMenu {
 
@@ -178,12 +210,13 @@ function Show-MainMenu {
 	Write-Host ""
 	Write-Host "1: Press '1' To install Funky Powershell Customisations."
 	Write-Host "2: Press '2' To Re-enable Azure in Terminal (after Option 1)."
+	Write-Host "2: Press '3' To Enable Command Prompt Retro Theme"
 	Write-Host ""
         Write-Host "============ WSL Customisations ==========="
 	Write-Host ""
-	Write-Host "3: Press '3' To install and enable neofetch to Ubuntu-20.04" -Foregroundcolor DarkYellow
-	Write-Host "4: Press '4' To install and enable neofetch to Kali-Linux." -Foregroundcolor DarkBlue
-	Write-Host "5: Press '5' To install Kali-Kex EXPERIMENTAL" -Foregroundcolor DarkBlue
+	Write-Host "3: Press '4' To install and enable neofetch to Ubuntu-20.04" -Foregroundcolor DarkYellow
+	Write-Host "4: Press '5' To install and enable neofetch to Kali-Linux." -Foregroundcolor DarkBlue
+	Write-Host "5: Press '6' To install Kali-Kex EXPERIMENTAL" -Foregroundcolor DarkBlue
 	Write-Host ""
         Write-Host "============================================"
 	Write-Host ""
@@ -205,17 +238,21 @@ do
 		'2' {
 		Set-AzureEnable
 		}
-
+		
 		'3' {
+		Set-CommandPromptRetro
+		}
+
+		'4' {
 		Set-Ubuntu20neo
 		}
 
 
-		'4' {
+		'5' {
 		Set-Kalineo
 		}
 		
-		'5' {
+		'6' {
 		Install-Kalikex
 		}
 
