@@ -8,6 +8,7 @@
 * [Setup](#setup)
 * [Prerequisites](#Prerequisites)
 * [Future](#Future )
+* [Screenshots](#Screenshots )
 
 ## General info
 I have shamelessly stolen ideas from the web to customise my PowerShell and WSL2 experience and then put it all in a script that makes it easier to re-install across multiple systems.
