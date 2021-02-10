@@ -1,3 +1,6 @@
+![Logo](/Screenshots/DTLogo.png?raw=true)
+
+
 # Doubtful Turnip's Windows Terminal Customiser
 
 ## Table of contents
