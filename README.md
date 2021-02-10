@@ -33,3 +33,13 @@ This script has been written for my personal Windows 10 environments, it may not
 Lots more customisation options
 
 Create an uninstaller
+
+
+## Screenshots
+![Installer](https://raw.githubusercontent.com/DoubtfulTurnip/DTTermTheme/Screenshots/installer.JPG)
+
+![PowerShell Terminal](https://raw.githubusercontent.com/DoubtfulTurnip/DTTermTheme/Screenshots/Powershell.JPG)
+
+![Ubuntu](https://raw.githubusercontent.com/DoubtfulTurnip/DTTermTheme/Screenshots/Ubuntu.JPG)
+
+![Kali WSL2](https://raw.githubusercontent.com/DoubtfulTurnip/DTTermTheme/Screenshots/Kali.JPG)
