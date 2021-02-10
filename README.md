@@ -36,10 +36,10 @@ Create an uninstaller
 
 
 ## Screenshots
-![Installer](https://raw.githubusercontent.com/DoubtfulTurnip/DTTermTheme/Screenshots/installer.JPG)
+![Installer](https://raw.githubusercontent.com/DoubtfulTurnip/DTTermTheme/main/Screenshots/installer.JPG)
 
-![PowerShell Terminal](https://raw.githubusercontent.com/DoubtfulTurnip/DTTermTheme/Screenshots/Powershell.JPG)
+![PowerShell Terminal](https://raw.githubusercontent.com/DoubtfulTurnip/main/DTTermTheme/Screenshots/Powershell.JPG)
 
-![Ubuntu](https://raw.githubusercontent.com/DoubtfulTurnip/DTTermTheme/Screenshots/Ubuntu.JPG)
+![Ubuntu](https://raw.githubusercontent.com/DoubtfulTurnip/DTTermTheme/main/Screenshots/Ubuntu.JPG)
 
-![Kali WSL2](https://raw.githubusercontent.com/DoubtfulTurnip/DTTermTheme/Screenshots/Kali.JPG)
+![Kali WSL2](https://raw.githubusercontent.com/DoubtfulTurnip/DTTermTheme/main/Screenshots/Kali.JPG)
