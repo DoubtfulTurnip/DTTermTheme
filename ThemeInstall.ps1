@@ -4,20 +4,86 @@ Author: DoubfulTurnip
 #>
 
 $banner = @"
-
-
+                _____
+             ,-"     "-.   
+            / o       o \
+           /   \     /   \
+          /     )-"-(     \
+         /     ( 6 6 )     \ 
+        /       \ " /       \
+       /         )=(         \
+      /   o   .--"-"--.   o   \
+     /    I  /  -   -  \  I    \
+ .--(    (_}y/\       /\y{_)    )--.
+(    ".___l\/__\_____/__\/l___,"    )
+ \                                 /
+  "-._      o O o O o O o      _,-"
+      `--Y--.___________.--Y--'
+         |==.___________.==| 
+         `==.___________.==' 
 
 "@
+
+
+
+function Start-Backup {
+$mydocuments = [environment]::getfolderpath("mydocuments")
+
+$backupfoldercheck = Test-Path "$mydocuments\DTTermTheme\Backups"
+	if ($backupfoldercheck -eq $false)
+{
+Write-Output "The backup folder doesn't exist. Creating this now for you..."
+Write-Output ""
+Start-Sleep 5
+New-Item -Path  "$mydocuments\DTTermTheme\Backups" -ItemType Directory -Force  | Out-Null
+New-Item -Path  "$mydocuments\DTTermTheme\Backups\Terminal Profile\" -ItemType Directory -Force  | Out-Null
+New-Item -Path  "$mydocuments\DTTermTheme\Backups\PSProfile\" -ItemType Directory -Force  | Out-Null
+
+Copy-Item -Path "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -Destination "$mydocuments\DTTermTheme\Backups\Terminal Profile\" -Force
+Copy-Item -Path "$env:UserProfile\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1" -destination "$mydocuments\DTTermTheme\Backups\PSProfile\Microsoft.PowerShell_profile.ps1" -Force
+Copy-Item -Path "$env:UserProfile\Documents\PowerShell\Microsoft.PowerShell_profile.ps1" -destination "$mydocuments\DTTermTheme\Backups\PSProfile\Microsoft.PowerShell_profile-7.ps1" -Force 
+}
+
+	else {
+		$overwrite = Read-Host "Original backup folder already exists, would you like to create a new backup? (This will not effect your original backup) [Y/N]"
+		if ($overwrite -eq 'Y'){
+		
+		$date = Get-Date
+		$date = $date.ToString("yyyy-MM-dd-HH-mm")
+		
+		New-Item -Path  "$mydocuments\DTTermTheme\Backups\$date" -ItemType Directory -Force | Out-Null
+		New-Item -Path  "$mydocuments\DTTermTheme\Backups\$date\Terminal Profile\" -ItemType Directory -Force | Out-Null
+		New-Item -Path  "$mydocuments\DTTermTheme\Backups\$date\PSProfile\" -ItemType Directory -Force | Out-Null
+		New-Item -Path  "$mydocuments\DTTermTheme\Backups\$date\PoshTheme\" -ItemType Directory -Force | Out-Null
+		
+		Copy-Item -Path "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -Destination "$mydocuments\DTTermTheme\Backups\$date\Terminal Profile\" -Force
+		Copy-Item -Path "$env:UserProfile\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1" -destination "$mydocuments\DTTermTheme\Backups\$date\PSProfile\Microsoft.PowerShell_profile.ps1" -Force 
+		Copy-Item -Path "$env:UserProfile\Documents\PowerShell\Microsoft.PowerShell_profile.ps1" -destination "$mydocuments\DTTermTheme\Backups\$date\PSProfile\Microsoft.PowerShell_profile-7.ps1" -Force 
+		Copy-Item -Path "$env:UserProfile\Documents\WindowsPowerShell\Modules\oh-my-posh\2.0.496\Themes\Paradox.psm1" -Destination "$mydocuments\DTTermTheme\Backups\$date\PoshTheme\" -Force
+		}
+		elseif ($overwrite -eq 'N'){
+		Write-Output "No problemo, returning to the main menu"
+		Start-Sleep 5
+		Show-MainMenu
+		}
+
+		else {
+		Write-Output "Invalid Input"
+		Start-Sleep 3
+		Start-Backup
+			}
+	}
+}
+
 
 function Set-CustomPSTheme {
 
 
-#$mydocumentsbackup = [environment]::getfolderpath("mydocuments")
-#New-Item -Path  $mydocumentsbackup\DTTermTheme\Backups -ItemType Directory -Force  | Out-Null
-#Copy-Item -Path "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -Destination "$mydocuments\DTTermTheme\Backups\Terminal Profile\settings.json" -Force
-#Copy-Item -Path "$mydocuments\DTTermTheme\PSProfile\Microsoft.PowerShell_profile.ps1" -destination "$env:UserProfile\Documents\WindowsPowerShell\" -Force
-#Copy-Item -Path "$mydocuments\DTTermTheme\PSProfile\Microsoft.PowerShell_profile-7.ps1" -destination "$env:UserProfile\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1" -Force
-#Copy-Item -Path "$mydocuments\DTTermTheme\PoshTheme\Paradox.psm1" -Destination "$env:UserProfile\Documents\WindowsPowerShell\Modules\oh-my-posh\2.0.496\Themes\Paradox.psm1" -Force
+
+Write-Output "Creating Backup..."
+Write-Output "If this is the first time running the Theme Customiser then a backup of your original settings will be created"
+Start-Backup
+
 
 <#
 Check if required modules are installed
@@ -40,8 +106,8 @@ $mydocuments = [environment]::getfolderpath("mydocuments")
 New-Item -Path  $mydocuments\DTTermTheme -ItemType Directory -Force  | Out-Null
 Copy-Item -Path ./* -Destination $mydocuments\DTTermTheme -r -force
 Copy-Item -Path "$mydocuments\DTTermTheme\Terminal Profile\settings.json" -Destination "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -Force
-Copy-Item -Path "$mydocuments\DTTermTheme\PSProfile\Microsoft.PowerShell_profile.ps1" -destination "$env:UserProfile\Documents\WindowsPowerShell\" -Force
-Copy-Item -Path "$mydocuments\DTTermTheme\PSProfile\Microsoft.PowerShell_profile-7.ps1" -destination "$env:UserProfile\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1" -Force
+Copy-Item -Path "$mydocuments\DTTermTheme\PSProfile\Microsoft.PowerShell_profile.ps1" -destination "$env:UserProfile\Documents\WindowsPowerShell\" -Force 
+Copy-Item -Path "$mydocuments\DTTermTheme\PSProfile\Microsoft.PowerShell_profile-7.ps1" -destination "$env:UserProfile\Documents\PowerShell\Microsoft.PowerShell_profile.ps1" -Force
 Copy-Item -Path "$mydocuments\DTTermTheme\PoshTheme\Paradox.psm1" -Destination "$env:UserProfile\Documents\WindowsPowerShell\Modules\oh-my-posh\2.0.496\Themes\Paradox.psm1" -Force
 
 			
@@ -119,80 +185,113 @@ function Install-Kalikex {
 #
 Write-Host "Starting Kali-Kex Install, You Will Need To Enter Sudo Password" -Foregroundcolor DarkBlue
 wsl.exe -d kali-linux sh -c "sudo apt update && sudo apt install kali-win-kex -y"
-Set-KalikexEnable
 Write-Host "Kali-Kex Now Installed And Enabled In Windows Terminal -- Returning to Main Menu" -Foregroundcolor Red
 Start-Sleep 5
 Show-MainMenu
 }
 
-function Set-KaliKexEnable{
-#Make Kali-Kex menu enabled for Windows Terminal
+function Set-KaliKexToggle{
+#Toggle Kali Kex in Terminal menu
 
+$ProfileInput = Get-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -raw
 
-$Input = Get-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -raw
-
-$find = @"
+$truestate = @"
  "guid": "{55ca431a-3a85-5fb3-83dc-11ececc031d2}", 
  "hidden": true, 
 "@
 
-$replace = @"
+$falsestate = @"
  "guid": "{55ca431a-3a85-5fb3-83dc-11ececc031d2}", 
  "hidden": false, 
 "@
 
-$Input -replace $find,$replace | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+$findstring = Select-String -path "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -Pattern "55ca431a-3a85-5fb3-83dc-11ececc031d2" -Context 0,1 | Out-String -Stream | Select-String -Pattern "true"
+
+if ($findstring -Match 'true') {
+$ProfileInput -replace $truestate,$falsestate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"}
+	write-output "Kali-Kex now enabled in Terminal Menu"
+	write-output "Returning to Main Menu"
+	Start-Sleep 3
+else {
+$ProfileInput -replace $falsestate,$truestate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"}
+	write-output "Kali-Kex now disabled in Terminal Menu"
+	write-output "Returning to Main Menu"
+	Start-Sleep 3
 }
 
 
-function Set-AzureEnable{
-#Make Azure menu enabled for Windows Terminal
+function Set-AzureToggle{
+#Toggle Azure in terminal menu
 
-$Input = Get-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -raw
+$ProfileInput = Get-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -raw
 
-$find = @"
+$truestate = @"
  "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}", 
  "hidden": true, 
 "@
 
-$replace = @"
+$falsestate = @"
  "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}", 
  "hidden": false, 
 "@
 
-$Input -replace $find,$replace | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+$findstring = Select-String -path "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -Pattern "b453ae62-4e3d-5e58-b989-0a998ec441b8" -Context 0,1 | Out-String -Stream | Select-String -Pattern "true"
+
+if ($findstring -Match 'true') {
+$ProfileInput -replace $truestate,$falsestate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"}
+	write-output "Azure now enabled in Terminal Menu"
+	write-output "Returning to Main Menu"
+	Start-Sleep 3
+else {
+$ProfileInput -replace $falsestate,$truestate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"}
+	write-output "Azure now disabled in Terminal Menu"
+	write-output "Returning to Main Menu"
+	Start-Sleep 3
 }
 
-function Set-CommandPromptRetro{
-#Make Azure menu enabled for Windows Terminal
 
-$Input = Get-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -raw
+function Set-CommandPromptRetroToggle{
+#Toggle the Command Prompt Retro theme
 
-$find = @"
+$ProfileInput = Get-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -raw
+
+$disabledstate = @"
  "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}", 
  "name": "Command Prompt",
  "commandline": "cmd.exe", 
  "hidden": false 
 "@
 
-$replace = @"
-"guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-"name": "Command Prompt",
-                "commandline": "cmd.exe",
-                "closeOnExit" : true,
-                "colorScheme" : "Retro",
-                "cursorColor" : "#FFFFFF",
-                "cursorShape": "filledBox",
-                "fontSize" : 16,
-                "padding" : "5, 5, 5, 5",
-                "tabTitle" : "Command Prompt",
-                "fontFace": "PxPlus IBM VGA8",
-                "experimental.retroTerminalEffect": true,
+$enabledstate = @"
+ "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+ "name": "Command Prompt",
+ "commandline": "cmd.exe",
+ "closeOnExit" : true,
+ "colorScheme" : "Retro",
+ "cursorColor" : "#FFFFFF",
+ "cursorShape": "filledBox",
+ "fontSize" : 16,
+ "padding" : "5, 5, 5, 5",
+ "tabTitle" : "Command Prompt",
+ "fontFace": "PxPlus IBM VGA8",
+ "experimental.retroTerminalEffect": true,
  "hidden": false,
  "commandline": "cmd.exe" 
 "@
 
-$Input -replace $find,$replace | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+$findstring = Select-String -path "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -Pattern "cmd.exe" -Context 0,2 | Out-String -Stream | Select-String -Pattern "Retro"
+
+if ($findstring -Match "Retro") {
+$ProfileInput -replace $enabledstate,$disabledstate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"}
+	write-output "Command Prompt Retro theme now disabled"
+	write-output "Returning to Main Menu"
+	Start-Sleep 3
+else {
+
+$ProfileInput -replace $disabledstate,$enabledstate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"}
+	write-output "Command Prompt Retro theme now enabled"
+	write-output "Returning to Main Menu"
+	Start-Sleep 3
 }
 
 
@@ -201,26 +300,29 @@ function Show-MainMenu {
 	param (
 		[string]$Title = "Doubtful Turnip's Mega-Script"
 	)
-	Clear-Host
+	[System.Console]::Clear();
 	Write-Host ""
+	$banner
 	Write-Host ""
 	Write-Host ""
 	Write-Host ""
 	Write-Host "============ $Title ==========="
 	Write-Host ""
 	Write-Host "1: Press '1' To install Funky Powershell Customisations."
-	Write-Host "2: Press '2' To Re-enable Azure in Terminal (after Option 1)."
-	Write-Host "2: Press '3' To Enable Command Prompt Retro Theme"
+	Write-Host "2: Press '2' To Enable/Disable Azure in Terminal Menu. (Disabled with Option One)"
+	Write-Host "3: Press '3' To Enable/Disable Command Prompt Retro Theme"
+	Write-Host "4: Press '4' To Backup PowerShell and Terminal Configs"
 	Write-Host ""
         Write-Host "============ WSL Customisations ==========="
 	Write-Host ""
-	Write-Host "3: Press '4' To install and enable neofetch to Ubuntu-20.04" -Foregroundcolor DarkYellow
-	Write-Host "4: Press '5' To install and enable neofetch to Kali-Linux." -Foregroundcolor DarkBlue
-	Write-Host "5: Press '6' To install Kali-Kex EXPERIMENTAL" -Foregroundcolor DarkBlue
+	Write-Host "5: Press '5' To install and enable neofetch for Ubuntu-20.04" -Foregroundcolor DarkYellow
+	Write-Host "6: Press '6' To install and enable neofetch for Kali-Linux." -Foregroundcolor DarkBlue
+	Write-Host "7: Press '7' To install Kali-Kex EXPERIMENTAL" -Foregroundcolor DarkBlue
+	Write-Host "8: Press '8' To Enable/Disable Kali-Kex in Terminal Menu." -Foregroundcolor DarkBlue
 	Write-Host ""
         Write-Host "============================================"
 	Write-Host ""
-	Write-Host "Q: Press 'Q' to quit" -Foregroundcolor Red
+	Write-Host "Q: Press 'Q' to quit" -Foregroundcolor Red -Backgroundcolor White
 	Write-Host ""
 			}
 
@@ -236,24 +338,31 @@ do
 		}
 
 		'2' {
-		Set-AzureEnable
+		Set-AzureToggle
 		}
 		
 		'3' {
-		Set-CommandPromptRetro
+		Set-CommandPromptRetroToggle
+		}
+		
+		'4' {
+		Start-Backup
 		}
 
-		'4' {
+		'5' {
 		Set-Ubuntu20neo
 		}
 
-
-		'5' {
+		'6' {
 		Set-Kalineo
 		}
 		
-		'6' {
+		'7' {
 		Install-Kalikex
+		}
+
+		'8' {
+		Set-KaliKexToggle
 		}
 
 		}
