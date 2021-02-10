@@ -2,7 +2,8 @@
 Title:  DoubtfulTurnip's Mega-Script
 Author: DoubfulTurnip
 #>
-
+mode con cols=120
+mode con lines=50
 $banner = @"
                 _____
              ,-"     "-.   
@@ -45,7 +46,9 @@ Copy-Item -Path "$env:UserProfile\Documents\PowerShell\Microsoft.PowerShell_prof
 }
 
 	else {
-		$overwrite = Read-Host "Original backup folder already exists, would you like to create a new backup? (This will not effect your original backup) [Y/N]"
+		Write-Output "Original backup folder already exists"
+		Write-Output ""
+		$overwrite = Read-Host "Would you like to create a new backup? (This will not effect your original backup) [Y/N]"
 		if ($overwrite -eq 'Y'){
 		
 		$date = Get-Date
@@ -77,16 +80,17 @@ Copy-Item -Path "$env:UserProfile\Documents\PowerShell\Microsoft.PowerShell_prof
 
 function Set-CustomPSTheme {
 
-
+	[System.Console]::Clear();
 
 Write-Output "Creating Backup..."
-Write-Output "If this is the first time running the Theme Customiser then a backup of your original settings will be created"
+Write-Output ""
+Write-Output "If this is the first time running the Theme Customiser Option then a backup of your original settings will be created"
 Start-Backup
 
 
 <#
 Check if required modules are installed
-If not install them
+If not, install them
 #>
 
 if (Get-Module -ListAvailable -Name oh-my-posh) {
@@ -112,7 +116,7 @@ Copy-Item -Path "$mydocuments\DTTermTheme\PoshTheme\Paradox.psm1" -Destination "
 			
 <#
 Check if the required fonts are installed
-If not then install the required fonts
+If not, then install the required fonts
 #>
 
 
@@ -150,12 +154,11 @@ Write-Output ""
 Write-Output ""
 Write-Output "Customisation Complete Returning To Main Menu"
 Start-Sleep 10
-Show-MainMenu
 }
 
 function Set-Ubuntu20neo {
 #Install and enable Neofetch for distro
-
+[System.Console]::Clear();
 Write-Host "Enabling Ubuntu-20.04 Neofetch Feature - Enter Sudo Password To Start System Update and Installation" -Foregroundcolor DarkYellow
 wsl.exe -d Ubuntu-20.04 sh -c "sudo apt update && sudo apt install neofetch -y && touch ~/.hushlogin" #create hush file to prevent default profile message on this distro
 wsl.exe -d Ubuntu-20.04 sh -c "grep -qxF 'neofetch' ~/.profile || echo 'neofetch' >> ~/.profile" #Check if neofetch is already in profile and append if not
@@ -163,12 +166,11 @@ Write-Output "."
 Write-Host "Neofetch installed and enabled for this distro" -Foregroundcolor DarkYellow
 Write-Host "Returning to Main Menu" -Foregroundcolor Red
 Start-Sleep 5
-Show-MainMenu
 }
 
 function Set-Kalineo {
 #Install and enable Neofetch for distro
-
+[System.Console]::Clear();
 Write-Host "Enabling Kali Feature - Enter Sudo Password To Start System Update and Installation" -Foregroundcolor DarkBlue
 wsl.exe -d kali-linux sh -c "sudo apt update && sudo apt install neofetch -y"
 wsl.exe -d kali-linux sh -c "grep -qxF 'neofetch' ~/.profile || echo 'neofetch' >> ~/.profile" #Check if neofetch is already in profile and append if not
@@ -176,22 +178,21 @@ Write-Output "."
 Write-Host "Neofetch installed and enabled for this distro" -Foregroundcolor DarkBlue
 Write-Host "Returning to Main Menu" -Foregroundcolor Red
 Start-Sleep 5
-Show-MainMenu
 }
 
 
 function Install-Kalikex {
 #
+[System.Console]::Clear();
 Write-Host "Starting Kali-Kex Install, You Will Need To Enter Sudo Password" -Foregroundcolor DarkBlue
-wsl.exe -d kali-linux sh -c "sudo apt update && sudo apt install kali-win-kex -y"
+wsl.exe -d kali-linux sh -c "sudo apt update && sudo apt install kali-win-kex -y && sudo apt install dbus-x11 -y"
 Write-Host "Kali-Kex Now Installed And Enabled In Windows Terminal -- Returning to Main Menu" -Foregroundcolor Red
 Start-Sleep 5
-Show-MainMenu
 }
 
 function Set-KaliKexToggle{
 #Toggle Kali Kex in Terminal menu
-
+[System.Console]::Clear();
 $ProfileInput = Get-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -raw
 
 $truestate = @"
@@ -208,21 +209,23 @@ $findstring = Select-String -path "$env:LocalAppData\Packages\Microsoft.WindowsT
 
 if ($findstring -Match 'true') {
 $ProfileInput -replace $truestate,$falsestate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+	Write-Output ""
 	write-output "Kali-Kex now enabled in Terminal Menu"
 	write-output "Returning to Main Menu"
-	Start-Sleep 3
+	Start-Sleep 5
 								}
 else {
 $ProfileInput -replace $falsestate,$truestate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+	Write-Output ""
 	write-output "Kali-Kex now disabled in Terminal Menu"
 	write-output "Returning to Main Menu"
-	Start-Sleep 3
+	Start-Sleep 5
 	}
 }
 
 function Set-AzureToggle{
 #Toggle Azure in terminal menu
-
+[System.Console]::Clear();
 $ProfileInput = Get-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -raw
 
 $truestate = @"
@@ -239,21 +242,23 @@ $findstring = Select-String -path "$env:LocalAppData\Packages\Microsoft.WindowsT
 
 if ($findstring -Match 'true') {
 $ProfileInput -replace $truestate,$falsestate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+	Write-Output ""
 	write-output "Azure now enabled in Terminal Menu"
 	write-output "Returning to Main Menu"
-	Start-Sleep 3
+	Start-Sleep 5
                                }
 else {
 $ProfileInput -replace $falsestate,$truestate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+	Write-Output ""
 	write-output "Azure now disabled in Terminal Menu"
 	write-output "Returning to Main Menu"
-	Start-Sleep 3
+	Start-Sleep 5
      }
 }
 
 function Set-CommandPromptRetroToggle{
 #Toggle the Command Prompt Retro theme
-
+[System.Console]::Clear();
 $ProfileInput = Get-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -raw
 
 $disabledstate = @"
@@ -284,6 +289,7 @@ $findstring = Select-String -path "$env:LocalAppData\Packages\Microsoft.WindowsT
 
 if ($findstring -Match "Retro") {
 $ProfileInput -replace $enabledstate,$disabledstate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+	Write-Output ""
 	write-output "Command Prompt Retro theme now disabled"
 	write-output "Returning to Main Menu"
 	Start-Sleep 3
@@ -292,6 +298,7 @@ $ProfileInput -replace $enabledstate,$disabledstate | Set-Content "$env:LocalApp
 else {
 
 $ProfileInput -replace $disabledstate,$enabledstate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+	Write-Output ""	
 	write-output "Command Prompt Retro theme now enabled"
 	write-output "Returning to Main Menu"
 	Start-Sleep 3
@@ -320,7 +327,7 @@ function Show-MainMenu {
 	Write-Host ""
 	Write-Host "5: Press '5' To install and enable neofetch for Ubuntu-20.04" -Foregroundcolor DarkYellow
 	Write-Host "6: Press '6' To install and enable neofetch for Kali-Linux." -Foregroundcolor DarkBlue
-	Write-Host "7: Press '7' To install Kali-Kex EXPERIMENTAL" -Foregroundcolor DarkBlue
+	Write-Host "7: Press '7' To install Kali-Kex" -Foregroundcolor DarkBlue
 	Write-Host "8: Press '8' To Enable/Disable Kali-Kex in Terminal Menu." -Foregroundcolor DarkBlue
 	Write-Host ""
         Write-Host "============================================"

@@ -8,7 +8,7 @@
 {
     "$schema": "https://aka.ms/terminal-profiles-schema",
 
-    "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+    "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
 
     // You can add more global application settings here.
     // To learn more about global settings, visit https://aka.ms/terminal-global-settings
@@ -75,7 +75,7 @@
  "hidden": true, 
  "name": "kali-kex", 
  "icon": "%userprofile%\\Documents\\DTTermTheme\\images\\kali-menu.png",
- "commandline": "wsl -d kali-linux kex --wtstart -s",
+ "commandline": "wsl -d kali-linux kex --wtstart -s"
  }, 
  { 
  "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}", 
