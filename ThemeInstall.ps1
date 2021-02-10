@@ -62,9 +62,8 @@ Copy-Item -Path "$env:UserProfile\Documents\PowerShell\Microsoft.PowerShell_prof
 		Copy-Item -Path "$env:UserProfile\Documents\WindowsPowerShell\Modules\oh-my-posh\2.0.496\Themes\Paradox.psm1" -Destination "$mydocuments\DTTermTheme\Backups\$date\PoshTheme\" -Force
 		}
 		elseif ($overwrite -eq 'N'){
-		Write-Output "No problemo, returning to the main menu"
+		Write-Output "No problemo, skipping backup..."
 		Start-Sleep 5
-		Show-MainMenu
 		}
 
 		else {
@@ -208,17 +207,18 @@ $falsestate = @"
 $findstring = Select-String -path "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -Pattern "55ca431a-3a85-5fb3-83dc-11ececc031d2" -Context 0,1 | Out-String -Stream | Select-String -Pattern "true"
 
 if ($findstring -Match 'true') {
-$ProfileInput -replace $truestate,$falsestate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"}
+$ProfileInput -replace $truestate,$falsestate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
 	write-output "Kali-Kex now enabled in Terminal Menu"
 	write-output "Returning to Main Menu"
 	Start-Sleep 3
+								}
 else {
-$ProfileInput -replace $falsestate,$truestate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"}
+$ProfileInput -replace $falsestate,$truestate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
 	write-output "Kali-Kex now disabled in Terminal Menu"
 	write-output "Returning to Main Menu"
 	Start-Sleep 3
+	}
 }
-
 
 function Set-AzureToggle{
 #Toggle Azure in terminal menu
@@ -238,17 +238,18 @@ $falsestate = @"
 $findstring = Select-String -path "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -Pattern "b453ae62-4e3d-5e58-b989-0a998ec441b8" -Context 0,1 | Out-String -Stream | Select-String -Pattern "true"
 
 if ($findstring -Match 'true') {
-$ProfileInput -replace $truestate,$falsestate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"}
+$ProfileInput -replace $truestate,$falsestate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
 	write-output "Azure now enabled in Terminal Menu"
 	write-output "Returning to Main Menu"
 	Start-Sleep 3
+                               }
 else {
-$ProfileInput -replace $falsestate,$truestate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"}
+$ProfileInput -replace $falsestate,$truestate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
 	write-output "Azure now disabled in Terminal Menu"
 	write-output "Returning to Main Menu"
 	Start-Sleep 3
+     }
 }
-
 
 function Set-CommandPromptRetroToggle{
 #Toggle the Command Prompt Retro theme
@@ -282,18 +283,20 @@ $enabledstate = @"
 $findstring = Select-String -path "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -Pattern "cmd.exe" -Context 0,2 | Out-String -Stream | Select-String -Pattern "Retro"
 
 if ($findstring -Match "Retro") {
-$ProfileInput -replace $enabledstate,$disabledstate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"}
+$ProfileInput -replace $enabledstate,$disabledstate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
 	write-output "Command Prompt Retro theme now disabled"
-	write-output "Returning to Main Menu"
-	Start-Sleep 3
-else {
-
-$ProfileInput -replace $disabledstate,$enabledstate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"}
-	write-output "Command Prompt Retro theme now enabled"
 	write-output "Returning to Main Menu"
 	Start-Sleep 3
 }
 
+else {
+
+$ProfileInput -replace $disabledstate,$enabledstate | Set-Content "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+	write-output "Command Prompt Retro theme now enabled"
+	write-output "Returning to Main Menu"
+	Start-Sleep 3
+}
+}
 
 function Show-MainMenu {
 
