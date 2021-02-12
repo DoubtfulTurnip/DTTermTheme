@@ -2,8 +2,8 @@
 Title:  DoubtfulTurnip's Mega-Script
 Author: DoubfulTurnip
 #>
-mode con cols=120
-mode con lines=50
+
+$Host.UI.RawUI.WindowsTitle = “Window Title”
 $banner = @"
                 _____
              ,-"     "-.   
