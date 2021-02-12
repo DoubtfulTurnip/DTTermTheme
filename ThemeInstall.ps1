@@ -172,11 +172,11 @@ Start-Sleep 5
 function Set-Kalineo {
 #Install and enable Neofetch for distro
 [System.Console]::Clear();
-Write-Host "Enabling Kali Feature - Enter Sudo Password To Start System Update and Installation" -Foregroundcolor DarkBlue
+Write-Host "Enabling Kali Feature - Enter Sudo Password To Start System Update and Installation" -Foregroundcolor Blue
 wsl.exe -d kali-linux sh -c "sudo apt update && sudo apt install neofetch -y"
 wsl.exe -d kali-linux sh -c "grep -qxF 'neofetch' ~/.profile || echo 'neofetch' >> ~/.profile" #Check if neofetch is already in profile and append if not
 Write-Output "."
-Write-Host "Neofetch installed and enabled for this distro" -Foregroundcolor DarkBlue
+Write-Host "Neofetch installed and enabled for this distro" -Foregroundcolor Blue
 Write-Host "Returning to Main Menu" -Foregroundcolor Red
 Start-Sleep 5
 }
@@ -185,7 +185,7 @@ Start-Sleep 5
 function Install-Kalikex {
 #
 [System.Console]::Clear();
-Write-Host "Starting Kali-Kex Install, You Will Need To Enter Sudo Password" -Foregroundcolor DarkBlue
+Write-Host "Starting Kali-Kex Install, You Will Need To Enter Sudo Password" -Foregroundcolor Blue
 wsl.exe -d kali-linux sh -c "sudo apt update && sudo apt install kali-win-kex -y && sudo apt install dbus-x11 -y"
 Write-Host "Kali-Kex Now Installed And Enabled In Windows Terminal -- Returning to Main Menu" -Foregroundcolor Red
 Start-Sleep 5
@@ -327,9 +327,9 @@ function Show-MainMenu {
         Write-Host "============ WSL Customisations ==========="
 	Write-Host ""
 	Write-Host "5: Press '5' To install and enable neofetch for Ubuntu-20.04" -Foregroundcolor DarkYellow
-	Write-Host "6: Press '6' To install and enable neofetch for Kali-Linux." -Foregroundcolor DarkBlue
-	Write-Host "7: Press '7' To install Kali-Kex" -Foregroundcolor DarkBlue
-	Write-Host "8: Press '8' To Enable/Disable Kali-Kex in Terminal Menu." -Foregroundcolor DarkBlue
+	Write-Host "6: Press '6' To install and enable neofetch for Kali-Linux." -Foregroundcolor Blue
+	Write-Host "7: Press '7' To install Kali-Kex" -Foregroundcolor Blue
+	Write-Host "8: Press '8' To Enable/Disable Kali-Kex in Terminal Menu." -Foregroundcolor Blue
 	Write-Host ""
         Write-Host "============================================"
 	Write-Host ""
