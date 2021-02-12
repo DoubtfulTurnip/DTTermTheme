@@ -3,7 +3,7 @@ Title:  DoubtfulTurnip's Mega-Script
 Author: DoubfulTurnip
 #>
 
-$Host.UI.RawUI.WindowsTitle = “Window Title”
+$Host.UI.RawUI.WindowsTitle = “DoutbfulTurnip's Mega-Script”
 $banner = @"
                 _____
              ,-"     "-.   
