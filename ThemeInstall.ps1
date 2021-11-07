@@ -111,7 +111,7 @@ New-Item -Path  $mydocuments\DTTermTheme -ItemType Directory -Force  | Out-Null
 Copy-Item -Path ./* -Destination $mydocuments\DTTermTheme -r -force
 Copy-Item -Path "$mydocuments\DTTermTheme\Terminal Profile\settings.json" -Destination "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -Force
 Copy-Item -Path "$mydocuments\DTTermTheme\PSProfile\Microsoft.PowerShell_profile.ps1" -destination "$env:UserProfile\Documents\WindowsPowerShell\" -Force 
-Copy-Item -Path "$mydocuments\DTTermTheme\PSProfile\Microsoft.PowerShell_profile-7.ps1" -destination "$env:UserProfile\Documents\PowerShell\Microsoft.PowerShell_profile.ps1" -Force
+Copy-Item -Path "$mydocuments\DTTermTheme\PSProfile\Microsoft.PowerShell_profile-7.ps1" -destination "$env:UserProfile\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1" -Force
 Copy-Item -Path "$mydocuments\DTTermTheme\PoshTheme\Paradox.psm1" -Destination "$env:UserProfile\Documents\WindowsPowerShell\Modules\oh-my-posh\2.0.496\Themes\Paradox.psm1" -Force
 
 			
