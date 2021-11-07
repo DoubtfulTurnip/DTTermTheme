@@ -43,7 +43,7 @@ New-Item -Path  "$mydocuments\DTTermTheme\Backups\PSProfile\" -ItemType Director
 
 Copy-Item -Path "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -Destination "$mydocuments\DTTermTheme\Backups\Terminal Profile\" -Force
 Copy-Item -Path "$env:UserProfile\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1" -destination "$mydocuments\DTTermTheme\Backups\PSProfile\Microsoft.PowerShell_profile.ps1" -Force
-Copy-Item -Path "$env:UserProfile\Documents\PowerShell\Microsoft.PowerShell_profile.ps1" -destination "$mydocuments\DTTermTheme\Backups\PSProfile\Microsoft.PowerShell_profile-7.ps1" -Force 
+Copy-Item -Path "$env:UserProfile\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1" -destination "$mydocuments\DTTermTheme\Backups\PSProfile\Microsoft.PowerShell_profile-7.ps1" -Force 
 }
 
 	else {
@@ -62,7 +62,7 @@ Copy-Item -Path "$env:UserProfile\Documents\PowerShell\Microsoft.PowerShell_prof
 		
 		Copy-Item -Path "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -Destination "$mydocuments\DTTermTheme\Backups\$date\Terminal Profile\" -Force
 		Copy-Item -Path "$env:UserProfile\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1" -destination "$mydocuments\DTTermTheme\Backups\$date\PSProfile\Microsoft.PowerShell_profile.ps1" -Force 
-		Copy-Item -Path "$env:UserProfile\Documents\PowerShell\Microsoft.PowerShell_profile.ps1" -destination "$mydocuments\DTTermTheme\Backups\$date\PSProfile\Microsoft.PowerShell_profile-7.ps1" -Force 
+		Copy-Item -Path "$env:UserProfile\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1" -destination "$mydocuments\DTTermTheme\Backups\$date\PSProfile\Microsoft.PowerShell_profile-7.ps1" -Force 
 		Copy-Item -Path "$env:UserProfile\Documents\WindowsPowerShell\Modules\oh-my-posh\6.1.0\Themes\Paradox.psm1" -Destination "$mydocuments\DTTermTheme\Backups\$date\PoshTheme\" -Force
 		}
 		elseif ($overwrite -eq 'N'){
